@@ -6,11 +6,23 @@ namespace Library_Mid_Term_Project
 {
     abstract class Item
     {
+<<<<<<< HEAD
         private string title;
         private string author;
         private string description;
         private bool checkedIn;
         private DateTime dueDate;
+=======
+        protected string title;
+        protected string author;
+        protected string description;
+        protected bool checkedIn;
+        protected DateTime dueDate;
+
+        public abstract string Title { get; set; }
+        public abstract string Author { get; set; }
+        public abstract string Description { get; set; }
+>>>>>>> Shamita
         
         public string Title
         {
