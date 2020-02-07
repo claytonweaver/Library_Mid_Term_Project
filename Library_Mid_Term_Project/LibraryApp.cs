@@ -59,14 +59,13 @@ namespace Library_Mid_Term_Project
 
         public List<Item> GetItems(List<Item> items)
         {
-            StreamReader reader = new StreamReader("../../../BookInventory.txt");
+            StreamReader reader = new StreamReader("../../../ItemsInventory.txt");
 
             string line = reader.ReadLine();
-            DateTime date = default(DateTime);
             while (line != null)
             {
                 string[] bookInfo = line.Split("|");
-                items.Add(new Book(bookInfo[0], bookInfo[1], int.Parse(bookInfo[2]), bookInfo[3], true, false, date));
+                items.Add(new Book(bookInfo[0], bookInfo[1], int.Parse(bookInfo[2]), bookInfo[3], true, false, DateTime.Parse(bookInfo[4])));
                 line = reader.ReadLine();
             }
 
@@ -85,7 +84,15 @@ namespace Library_Mid_Term_Project
             foreach (Item item in libraryList)
             {
                 //go back and format this or, inside of the Item (or children) class, setup a DisplayItem(); method
-                Console.WriteLine($"{i}: {item}"); 
+                if (!item.CheckedIn)
+                {
+                    Console.WriteLine($"{i}: {item.Title} {item.Author} {item.CheckedIn} {item.Description} {item.DueDate}");
+                }
+                else
+                {
+                    Console.WriteLine($"{i}: {item.Title} {item.Author} {item.CheckedIn} {item.Description}");
+
+                }
                 i++;
             }
             UserContinue();
