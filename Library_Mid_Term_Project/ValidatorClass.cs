@@ -4,17 +4,21 @@ using System.Text;
 
 namespace Library_Mid_Term_Project
 {
-    class ValidatorClass
+    /*class ValidatorClass
     {
-        public const int OptionMax = 5;
-        public static string GetUserResponse(string response)
+        public static string GetUserInput(string response)
         {
             Console.Write(response);
             return Console.ReadLine();
         }
 
-        public static string GetValidInput(string input)
+        public static string GetValidInput(string input, int min, int max)
         {
+
+            try
+            {
+
+            }
             if (input ==)
             {
 
@@ -56,5 +60,5 @@ namespace Library_Mid_Term_Project
 
         }
 
-    }
+    }*/
 }

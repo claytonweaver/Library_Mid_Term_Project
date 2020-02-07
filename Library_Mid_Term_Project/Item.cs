@@ -6,26 +6,51 @@ namespace Library_Mid_Term_Project
 {
     abstract class Item
     {
-        protected string title;
-        protected string author;
-        protected bool checkedIn;
-        protected DateTime dueDate;
+        private string title;
+        private string author;
+        private string description;
+        private bool checkedIn;
+        private DateTime dueDate;
+        
+        public string Title
+        {
+            get { return title; }
+            set { title = value; }
+        }
 
-        public abstract string Title { get; set; }
-        public abstract string Author { get; set; }
-        public abstract bool CheckedIn { get; set; }
-        public abstract DateTime DueDate { get; set; }
+        public string Author
+        {
+            get { return author; }
+            set { author = value; }
+        }
+        public string Description
+        {
+            get { return description; }
+            set { description = value; }
+        }
+        
+        public bool CheckedIn
+        {
+            get { return checkedIn; }
+            set { checkedIn = value; }
+        }
+        public DateTime DueDate
+        {
+            get { return dueDate; }
+            set { dueDate = value; }
+        }
 
         public Item()
         {
 
         }
-        public Item(string _title, string _author, bool _checkedIn, DateTime _dueDate)
+        public  Item(string title, string author, string description, bool checkedIn, DateTime dueDate)
         {
-            title = _title;
-            author = _author;
-            checkedIn = _checkedIn;
-            dueDate = _dueDate;
+            this.title = title;
+            this.author = author;
+            this.description = description;
+            this.checkedIn = checkedIn;
+            this.dueDate = dueDate;
         }
 
 

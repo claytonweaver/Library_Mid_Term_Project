@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace Library_Mid_Term_Project
@@ -11,11 +12,12 @@ namespace Library_Mid_Term_Project
                 // We'll READ the file when prepare to display a list of all the Books/Items, but again, just once, near the top of the program. We don't need to read the file all over the place
                 // We'll WRITE to the file when a user checks in, or checks out a Book/Item
 
-        // List<Item> libraryList = new List<Item>(); <= GONNA NEED THIS ASAP
-        //
+        List<Item> libraryList = new List<Item>(); //<= GONNA NEED THIS ASAP
+       
 
         public void StartLibrary()
         {
+            GetItems(libraryList);
             PrintMainMenu();
         }
 
@@ -55,7 +57,22 @@ namespace Library_Mid_Term_Project
             }
         }
 
+        public List<Item> GetItems(List<Item> items)
+        {
+            StreamReader reader = new StreamReader("../../../ItemsInventory.txt");
 
+            string line = reader.ReadLine();
+            while (line != null)
+            {
+                string[] bookInfo = line.Split("|");
+                items.Add(new Book(bookInfo[0], bookInfo[1], int.Parse(bookInfo[2]), bookInfo[3], true, false, DateTime.Parse(bookInfo[4])));
+                line = reader.ReadLine();
+            }
+
+            reader.Close();
+
+            return items;
+        }
         // everything from here down (pretty much) will be broken until we plug in the list of items
         private void ListItems() //will need a 'List<Item> libraryList' parameter
         {
@@ -67,7 +84,15 @@ namespace Library_Mid_Term_Project
             foreach (Item item in libraryList)
             {
                 //go back and format this or, inside of the Item (or children) class, setup a DisplayItem(); method
-                Console.WriteLine($"{i}: {item}"); 
+                if (!item.CheckedIn)
+                {
+                    Console.WriteLine($"{i}: {item.Title} {item.Author} {item.CheckedIn} {item.Description} {item.DueDate}");
+                }
+                else
+                {
+                    Console.WriteLine($"{i}: {item.Title} {item.Author} {item.CheckedIn} {item.Description}");
+
+                }
                 i++;
             }
             UserContinue();
@@ -91,9 +116,6 @@ namespace Library_Mid_Term_Project
 
                     break;
             }
-
-            
-
         }
 
         private void CheckOutItem() //will need a 'List<Item> libraryList' parameter
