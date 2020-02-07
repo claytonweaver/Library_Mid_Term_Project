@@ -9,7 +9,6 @@ namespace Library_Mid_Term_Project
         protected string title;
         protected string author;
         protected string description;
-        protected int numberOfPages;
         protected bool checkedIn;
         protected DateTime dueDate;
 
