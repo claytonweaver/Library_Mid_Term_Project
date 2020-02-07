@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace Library_Mid_Term_Project
@@ -11,11 +12,12 @@ namespace Library_Mid_Term_Project
                 // We'll READ the file when prepare to display a list of all the Books/Items, but again, just once, near the top of the program. We don't need to read the file all over the place
                 // We'll WRITE to the file when a user checks in, or checks out a Book/Item
 
-        // List<Item> libraryList = new List<Item>(); <= GONNA NEED THIS ASAP
-        //
+        List<Item> libraryList = new List<Item>(); //<= GONNA NEED THIS ASAP
+       
 
         public void StartLibrary()
         {
+            GetItems(libraryList);
             PrintMainMenu();
         }
 
@@ -55,7 +57,23 @@ namespace Library_Mid_Term_Project
             }
         }
 
+        public List<Item> GetItems(List<Item> items)
+        {
+            StreamReader reader = new StreamReader("../../../BookInventory.txt");
 
+            string line = reader.ReadLine();
+            DateTime date = default(DateTime);
+            while (line != null)
+            {
+                string[] bookInfo = line.Split("|");
+                items.Add(new Book(bookInfo[0], bookInfo[1], int.Parse(bookInfo[2]), bookInfo[3], true, false, date));
+                line = reader.ReadLine();
+            }
+
+            reader.Close();
+
+            return items;
+        }
         // everything from here down (pretty much) will be broken until we plug in the list of items
         private void ListItems() //will need a 'List<Item> libraryList' parameter
         {
@@ -91,9 +109,6 @@ namespace Library_Mid_Term_Project
 
                     break;
             }
-
-            
-
         }
 
         private void CheckOutItem() //will need a 'List<Item> libraryList' parameter
