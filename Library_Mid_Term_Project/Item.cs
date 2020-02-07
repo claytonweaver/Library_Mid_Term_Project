@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Library_Project_Practice
+namespace Library_Mid_Term_Project
 {
     abstract class Item
     {

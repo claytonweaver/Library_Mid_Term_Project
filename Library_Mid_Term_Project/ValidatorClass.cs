@@ -51,6 +51,10 @@ namespace Library_Mid_Term_Project
         }
 
         //maybe add search for title or search for author... definitley return type with 
+        public string SearchForTitle()
+        {
+
+        }
 
     }
 }
