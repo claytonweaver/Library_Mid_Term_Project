@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Library_Mid_Term_Project
 {
-    /*class ValidatorClass
+    class ValidatorClass
     {
         public static string GetUserInput(string response)
         {
@@ -13,7 +13,7 @@ namespace Library_Mid_Term_Project
             return Console.ReadLine();
         }
 
-<<<<<<< HEAD
+
         public static string GetValidInput(string input, int min, int max)
         {
 
@@ -21,14 +21,18 @@ namespace Library_Mid_Term_Project
             {
 
             }
-            if (input ==)
+            catch
             {
-=======
+
+            }
+            return "";
+        }
+
         //public static string GetValidInput(string input)
         //{
         //    if (input ==)
         //    {
->>>>>>> Shamita
+
 
         //    }
         //    else if ()
@@ -104,6 +108,5 @@ namespace Library_Mid_Term_Project
             }
             return output;
         }
-
     }
 }
