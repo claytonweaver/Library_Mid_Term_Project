@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+<<<<<<< HEAD
 using System.IO;
+=======
+>>>>>>> ea165f9b35173eb16205156b3112318fc38162d9
 
 namespace Library_Mid_Term_Project
 {
@@ -8,6 +11,7 @@ namespace Library_Mid_Term_Project
     {
         static void Main(string[] args)
         {
+<<<<<<< HEAD
             //creates an instance of the library application
             Library session = new Library();
 
@@ -46,6 +50,9 @@ namespace Library_Mid_Term_Project
             reader.Close();
 
             return books;
+=======
+
+>>>>>>> ea165f9b35173eb16205156b3112318fc38162d9
         }
     }
 }
