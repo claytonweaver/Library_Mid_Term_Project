@@ -111,6 +111,10 @@ namespace Library_Mid_Term_Project
                     i++;
                 }
             }
+            // are you sure? 
+
+            // HERE'S WHERE WE WRITE TO .TXT
+
             //convert list back to .txt file, propigate the changes, and save over the old .txt file
 
             UserContinue();
