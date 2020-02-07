@@ -5,19 +5,30 @@ using System.Text;
 
 namespace Library_Mid_Term_Project
 {
-    class ValidatorClass
+    /*class ValidatorClass
     {
-        public const int OptionMax = 5;
-        public static string GetUserResponse(string response)
+        public static string GetUserInput(string response)
         {
             Console.Write(response);
             return Console.ReadLine();
         }
 
+<<<<<<< HEAD
         //public static string GetValidInput(string input)
         //{
         //    if (input ==)
         //    {
+=======
+        public static string GetValidInput(string input, int min, int max)
+        {
+
+            try
+            {
+
+            }
+            if (input ==)
+            {
+>>>>>>> 6b796e374b5e74962323b62e3f79225e2b5f0c3f
 
         //    }
         //    else if ()
@@ -94,5 +105,5 @@ namespace Library_Mid_Term_Project
             return output;
         }
 
-    }
+    }*/
 }

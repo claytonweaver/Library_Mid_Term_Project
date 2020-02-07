@@ -6,6 +6,7 @@ namespace Library_Mid_Term_Project
 {
     abstract class Item
     {
+<<<<<<< HEAD
         protected string title;
         protected string author;
         protected string description;
@@ -15,21 +16,53 @@ namespace Library_Mid_Term_Project
         public abstract string Title { get; set; }
         public abstract string Author { get; set; }
         public abstract string Description { get; set; }
+=======
+        private string title;
+        private string author;
+        private string description;
+        private bool checkedIn;
+        private DateTime dueDate;
+>>>>>>> 6b796e374b5e74962323b62e3f79225e2b5f0c3f
         
-        public abstract bool CheckedIn { get; set; }
-        public abstract DateTime DueDate { get; set; }
+        public string Title
+        {
+            get { return title; }
+            set { title = value; }
+        }
+
+        public string Author
+        {
+            get { return author; }
+            set { author = value; }
+        }
+        public string Description
+        {
+            get { return description; }
+            set { description = value; }
+        }
+        
+        public bool CheckedIn
+        {
+            get { return checkedIn; }
+            set { checkedIn = value; }
+        }
+        public DateTime DueDate
+        {
+            get { return dueDate; }
+            set { dueDate = value; }
+        }
 
         public Item()
         {
 
         }
-        public Item(string _title, string _author, string _description, int _numberOfPages, bool _checkedIn, DateTime _dueDate)
+        public  Item(string title, string author, string description, bool checkedIn, DateTime dueDate)
         {
-            title = _title;
-            author = _author;
-            description = _description;
-            checkedIn = _checkedIn;
-            dueDate = _dueDate;
+            this.title = title;
+            this.author = author;
+            this.description = description;
+            this.checkedIn = checkedIn;
+            this.dueDate = dueDate;
         }
 
 
