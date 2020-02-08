@@ -12,7 +12,10 @@ namespace Library_Mid_Term_Project
             get { return numberOfPages; }
             set { numberOfPages = value; }
         }
+        public Book()
+        {
 
+        }
         public Book(string title, string author, int numberOfPages, string description, bool checkedIn, bool checkedOut, DateTime dueDate) : base(title, author, description, checkedIn, dueDate)
         {
             this.numberOfPages = numberOfPages;
