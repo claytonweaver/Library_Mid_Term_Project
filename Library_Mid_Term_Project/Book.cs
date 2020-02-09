@@ -14,17 +14,14 @@ namespace Library_Mid_Term_Project
             get { return numberOfPages; }
             set { numberOfPages = value; }
         }
+        public Book()
+        {
+
+        }
 
         public Book(string mediaType, string title, string author, string description, bool checkedIn, DateTime dueDate, int numberOfPages) : base(mediaType, title, author, description, checkedIn, dueDate)
         {
             this.numberOfPages = numberOfPages;
         }
-
-        public override int ReturnNumberOfPages()
-        {
-            return numberOfPages;
-        }
-
-
     }
 }
