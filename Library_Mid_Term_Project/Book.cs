@@ -17,7 +17,5 @@ namespace Library_Mid_Term_Project
         {
             this.numberOfPages = numberOfPages;
         }
-
-
     }
 }

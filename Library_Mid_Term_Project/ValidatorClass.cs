@@ -13,40 +13,10 @@ namespace Library_Mid_Term_Project
             return Console.ReadLine();
         }
 
-
-        public static string GetValidInput(string input, int min, int max)
-        {
-
-            try
-            {
-
-            }
-            catch
-            {
-
-            }
-            return "";
-        }
-
-        //public static string GetValidInput(string input)
-        //{
-        //    if (input ==)
-        //    {
-
-
-        //    }
-        //    else if ()
-        //    {
-
-        //    }
-        //    else
-        //    {
-
-        //    }
-        //}
-
         public static int GetValidNumber(string input, int max)
         {
+            while(true)
+            {
             int option;
             //decided to use a try catch here because to make sure input it a number and to change what our max,
             //it is listed above in this class. 
@@ -57,6 +27,7 @@ namespace Library_Mid_Term_Project
                 if (option < 0 || option > max)
                 {
                     option = -1;
+                    Console.WriteLine("Please enter a valid number!");
                 }
             }
             catch
@@ -64,47 +35,46 @@ namespace Library_Mid_Term_Project
                 option = -1; 
             }
             return option;
+            }
         }
 
         //maybe add search for title or search for author... definitley return type with 
-        public string SearchForTitle(List<string> titles, string userInput)
-        {
-            
-            userInput.ToCharArray();
-            foreach(var title in titles)
-            {
-                int sum = 0;
-                int i = 0;
-                foreach (char t in title)
-                {
-                    if (userInput[i] == t)
-                    {
-                        sum++;
-                    }
-                    i++;
-                    if (sum >= 4)
-                    {
-                        return title;
-                    }
-                    if (title.IndexOf(t) == title.Count())
-                    {
-                        sum -= sum;
-                        i -= i;
-                    }
-                }
-            }
-            return "";
-        }
-
-        public string TitleSearch(List<string> list, string word)
+        public string SearchByTitle(List<string> list)
         {
             string output = "Invalid";
-            foreach (string book in list)
+            bool validInput = false;
+            while(validInput == false)
             {
-                if (book.Contains(word))
+                string word = Console.ReadLine();
+                foreach (string book in list)
                 {
-                    output = book;
+                    if (book.Contains(word)) //if its a list of items, use (book.whateverName.Contains(word))
+                    {
+                        output = book;
+                        return output;
+                    }
                 }
+                Console.WriteLine(output);
+            }
+            return output;
+        }
+
+        public string SearchByAuthor(List<string> authorlist)
+        {
+            string output = "Invalid";
+            bool validInput = false;
+            while (validInput == false)
+            {
+                string word = Console.ReadLine();
+                foreach (string author in authorlist)
+                {
+                    if (author.Contains(word)) //if its a list of items, use (book.whateverName.Contains(word))
+                    {
+                        output = author;
+                        return output;
+                    }
+                }
+                Console.WriteLine(output);
             }
             return output;
         }
