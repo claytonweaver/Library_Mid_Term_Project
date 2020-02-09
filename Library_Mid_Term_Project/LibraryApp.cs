@@ -8,12 +8,12 @@ namespace Library_Mid_Term_Project
     class LibraryApp
     {
         // read in the text file to a list... somewhere... probably at the top, just once. 
-                // Maybe inside of StartLibrary() or PrintMainMenu(). 
-                // We'll READ the file when prepare to display a list of all the Books/Items, but again, just once, near the top of the program. We don't need to read the file all over the place
-                // We'll WRITE to the file when a user checks in, or checks out a Book/Item
+        // Maybe inside of StartLibrary() or PrintMainMenu(). 
+        // We'll READ the file when prepare to display a list of all the Books/Items, but again, just once, near the top of the program. We don't need to read the file all over the place
+        // We'll WRITE to the file when a user checks in, or checks out a Book/Item
 
         List<Item> libraryList = new List<Item>(); //<= GONNA NEED THIS ASAP
-       
+
 
         public void StartLibrary()
         {
@@ -73,7 +73,35 @@ namespace Library_Mid_Term_Project
 
             return items;
         }
-        // everything from here down (pretty much) will be broken until we plug in the list of items
+
+        public void ItemListToText(List<Item> items)
+        {
+            StreamWriter writer = new StreamWriter("../../../ItemsInventoryKYLESTEST");
+
+            // looks at the libraryList declared aaaaaallllll the way at the top, and iterates through them.
+            // properties like CheckedIn or DueDate will be modified in the CheckIn/CheckOut method, and this method will write those changes ontop of the old .txt file
+            // In other words: Run this method only AFTER the user has made changes
+
+            for (int i = 0; i < libraryList.Count; i++)
+            {
+
+                if (items[i] is Book)
+                {
+                    //unboxing magic
+                    Item item = items[i];
+                    Book book = (Book)item; 
+
+                    writer.WriteLine($"{book.Title}|{book.Author}|{book.NumberOfPages}|{book.Description}|{book.CheckedIn}|{book.DueDate}");
+                }
+                else if (items[i] is Item)
+                {
+                    // it's not an elegant solution, but depending on item type, we can setup the writer to write in different ways, to match different constructors
+                }
+            }
+            writer.Close();
+        }
+
+        
         private void ListItems() //will need a 'List<Item> libraryList' parameter
         {
             //do stuff
@@ -86,11 +114,16 @@ namespace Library_Mid_Term_Project
                 //go back and format this or, inside of the Item (or children) class, setup a DisplayItem(); method
                 if (!item.CheckedIn)
                 {
-                    Console.WriteLine($"{i}: {item.Title} {item.Author} {item.CheckedIn} {item.Description} {item.DueDate}");
+                    Console.WriteLine($"{i}: Title: {item.Title} Author: {item.Author} Status: {item.CheckedIn} Due Date: {item.DueDate}\n Description: {item.Description}");
                 }
                 else
                 {
-                    Console.WriteLine($"{i}: {item.Title} {item.Author} {item.CheckedIn} {item.Description}");
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    Console.WriteLine($"{i}: Title: {item.Title}, Author: {item.Author}\tAvailable: {item.CheckedIn}   Due Date: {item.DueDate.ToShortDateString()}");
+                    Console.ResetColor();
+                    Console.ForegroundColor = ConsoleColor.DarkCyan;
+                    Console.WriteLine($"\tDescription: {item.Description}\n");
+                    Console.ResetColor();
 
                 }
                 i++;
@@ -104,7 +137,7 @@ namespace Library_Mid_Term_Project
             Console.WriteLine("Search by: 1. Author  2: Title  3. Return to Main Menu");
             string userInput = Console.ReadLine(); // needs real validation 
 
-            switch(userInput)
+            switch (userInput)
             {
                 case "1":
 
@@ -113,7 +146,7 @@ namespace Library_Mid_Term_Project
 
                     break;
                 case "3":
-
+                    PrintMainMenu();
                     break;
             }
         }
@@ -121,22 +154,30 @@ namespace Library_Mid_Term_Project
         private void CheckOutItem() //will need a 'List<Item> libraryList' parameter
         {
             //do stuff
-            Console.WriteLine("Which item would you like to check out?");
-            // asks user to select between 1 - i, where i is the current # of 'checked in' items in the list
-            int i = 1;
+
+            // probably print the list of items that checked in
+            Console.WriteLine("\nHere's the list of currently available items:");
+            int count = 1;
             foreach (Item item in libraryList)
             {
-                if(item.CheckedIn == true)
+                if (item.CheckedIn == true)
                 {
-                    // probably print the list of items that checked in
-                    Console.WriteLine($"{i}: {item}");
-                    i++;
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    Console.WriteLine($"{count}: {item.Title}");
+                    Console.ResetColor();
+                    count++;
                 }
             }
+
+            // asks user to select between 1 - i, where i is the current # of 'checked in' items in the list
+            int indexOffset = -1;
+            int choice = ValidatorClass.GetValidNumber("\nWhich item would you like to check out?", count) + indexOffset;
+            libraryList[choice].CheckedIn = false;
+
+            ItemListToText(libraryList);
             // are you sure? 
 
             // HERE'S WHERE WE WRITE TO .TXT
-
             //convert list back to .txt file, propigate the changes, and save over the old .txt file
 
             UserContinue();
@@ -144,20 +185,23 @@ namespace Library_Mid_Term_Project
 
         private void CheckInItem() //will need a 'List<Item> libraryList' parameter
         {
-            //do stuff
-            Console.WriteLine("What are you checking in?");
+            // probably print the list of items that are checked out
             Console.WriteLine("Here's the list of currently checked out items:");
-            //asks user to make a selction between 1 - i, where i is the current # of 'checked out' items in the list
             int i = 1;
             foreach (Item item in libraryList)
             {
-                if(item.CheckedIn == false)
+                if (item.CheckedIn == false)
                 {
-                    // probably print the list of items that are checked out
-                    Console.WriteLine($"{i}: {item}");
+                    Console.WriteLine($"{i}: {item.Title} --- {item.CheckedIn}");
                     i++;
                 }
             }
+
+            Console.WriteLine("What are you checking in?");
+
+            //asks user to make a selction between 1 - i, where i is the current # of 'checked out' items in the list
+
+
             //convert list back to .txt file, propigate the changes, and save over the old .txt file
 
             UserContinue();
