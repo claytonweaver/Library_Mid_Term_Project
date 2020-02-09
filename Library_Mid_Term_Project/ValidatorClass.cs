@@ -13,6 +13,20 @@ namespace Library_Mid_Term_Project
             return Console.ReadLine();
         }
 
+        public static string GetValidInput(string input, int min, int max)
+        {
+
+            try
+            {
+
+            }
+            catch
+            {
+
+            }
+            return "";
+        }
+
         public static int GetValidNumber(string input, int max)
         {
             while(true)
