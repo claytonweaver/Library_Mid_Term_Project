@@ -28,7 +28,7 @@ namespace Library_Mid_Term_Project
             while (validChoice)
             {
                 Console.WriteLine("Welcome to the Libarary!\nPlease choose from an option below:");
-                Console.WriteLine("1. Show Library Collection  2. Search for Item  3. Check out item  4. Check in item  5. Exit");
+                Console.WriteLine("1. Show Library Collection\n2. Search for Item\n3. Check out item\n4. Check in item\n5. Exit");
                 string userSelection = Console.ReadLine();
                 validChoice = false;
 
@@ -57,16 +57,50 @@ namespace Library_Mid_Term_Project
             }
         }
 
+        //Fields of abstract class string mediaType, string title, string author, string description, bool checkedIn, DateTime dueDat
         public List<Item> GetItems(List<Item> items)
         {
+          
             StreamReader reader = new StreamReader("../../../ItemsInventory.txt");
 
             string line = reader.ReadLine();
             while (line != null)
             {
-                string[] bookInfo = line.Split("|");
-                items.Add(new Book(bookInfo[0], bookInfo[1], int.Parse(bookInfo[2]), bookInfo[3], true, false, DateTime.Parse(bookInfo[4])));
-                line = reader.ReadLine();
+                string[] itemInfo = line.Split("|");
+                if (itemInfo[0] == "Book")
+                {
+
+                    /*this.mediaType = mediaType;
+                    this.title = title;
+                    this.author = author;
+                    this.description = description;
+                    this.checkedIn = checkedIn;
+                    this.dueDate = dueDate;
+                     */
+
+                    items.Add(new Book(itemInfo[0], itemInfo[1], itemInfo[2], itemInfo[3], bool.Parse(itemInfo[4]), DateTime.Parse(itemInfo[5]), int.Parse(itemInfo[6])));
+                    line = reader.ReadLine();
+                }
+
+                //Adding if's for additional media types
+
+                /*if (itemInfo[0] == "Movie")
+                {
+                    items.Add(new Movie(itemInfo[0], itemInfo[1], itemInfo[2], int.Parse(itemInfo[3]), itemInfo[4], true, false, DateTime.Parse(itemInfo[4])));
+                    line = reader.ReadLine();
+                }
+
+                if (itemInfo[0] == "Magazine")
+                {
+                    items.Add(new Magazine(itemInfo[0], itemInfo[1], itemInfo[2], int.Parse(itemInfo[3]), itemInfo[4], true, false, DateTime.Parse(itemInfo[4])));
+                    line = reader.ReadLine();
+                }
+
+                if (itemInfo[0] == "CD")
+                {
+                    items.Add(new CD(itemInfo[0], itemInfo[1], itemInfo[2], int.Parse(itemInfo[3]), itemInfo[4], true, false, DateTime.Parse(itemInfo[4])));
+                    line = reader.ReadLine();
+                }*/
             }
 
             reader.Close();
@@ -76,21 +110,31 @@ namespace Library_Mid_Term_Project
         // everything from here down (pretty much) will be broken until we plug in the list of items
         private void ListItems() //will need a 'List<Item> libraryList' parameter
         {
-            //do stuff
-            Console.WriteLine("<list of items>");
-            //just prints the list of Items, and their properties
-            //something like...
             int i = 1;
+            Console.Clear();
             foreach (Item item in libraryList)
             {
                 //go back and format this or, inside of the Item (or children) class, setup a DisplayItem(); method
-                if (!item.CheckedIn)
+                if (item is Book && item.CheckedIn == false)
                 {
-                    Console.WriteLine($"{i}: {item.Title} {item.Author} {item.CheckedIn} {item.Description} {item.DueDate}");
+                    
+                    Book b = (Book)item;
+                    Console.WriteLine($"{i} - TITLE: {item.Title}\n    AUTHOR: {item.Author}\n    NUMBER OF PAGES: {b.NumberOfPages}\n    DESCRIPTION: {item.Description}");
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine($"      DUE DATE: {item.DueDate}");
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.WriteLine("=============================================================================================================");
+
                 }
-                else
+                else if(item is Book)
                 {
-                    Console.WriteLine($"{i}: {item.Title} {item.Author} {item.CheckedIn} {item.Description}");
+                    Book b = (Book)item;
+                    Console.WriteLine($"{i} - TITLE: {item.Title}\n    AUTHHOR: {item.Author}\n    NUMBER OF PAGES: {b.NumberOfPages}");
+                    Console.WriteLine($"    Description: {item.Description}");
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine($"        Available for CheckOut");
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.WriteLine("=============================================================================================================");
 
                 }
                 i++;
@@ -101,18 +145,19 @@ namespace Library_Mid_Term_Project
         //should allow user to see a list item based on a search for author or title
         private void SearchForItem() //will need a 'List<Item> libraryList' parameter
         {
-            Console.WriteLine("Search by: 1. Author  2: Title  3. Return to Main Menu");
-            string userInput = Console.ReadLine(); // needs real validation 
+            ValidatorClass validation = new ValidatorClass();
+            Console.WriteLine("Search by:\n     1. Author\n     2: Title\n      3. Return to Main Menu");
+            int userInput = validation.GetValidInput(validation.GetUserInput("Search by:\n     1. Author\n     2: Title\n      3. Return to Main Menu"), 1, 3); //Console.ReadLine(); // needs real validation 
 
-            switch(userInput)
+            switch (userInput)
             {
-                case "1":
+                case 1:
 
                     break;
-                case "2":
+                case 2:
 
                     break;
-                case "3":
+                case 3:
 
                     break;
             }
@@ -162,7 +207,6 @@ namespace Library_Mid_Term_Project
 
             UserContinue();
         }
-
         private void UserContinue()
 
         {
@@ -190,7 +234,6 @@ namespace Library_Mid_Term_Project
                 }
             }
         }
-
         private void ExitProgram()
         {
             Environment.Exit(0);

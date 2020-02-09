@@ -4,13 +4,20 @@ using System.Text;
 
 namespace Library_Mid_Term_Project
 {
-    abstract class Item
+    public abstract class Item
     {
+        private string mediaType;
         private string title;
         private string author;
         private string description;
         private bool checkedIn;
         private DateTime dueDate;
+
+        public string MediaType
+        {
+            get { return mediaType; }
+            set { mediaType = value; }
+        }
 
         public string Title
         {
@@ -40,12 +47,30 @@ namespace Library_Mid_Term_Project
             set { dueDate = value; }
         }
 
+        public virtual int ReturnNumberOfPages()
+        {
+            int numberOfPages = 0;
+            return numberOfPages;
+        }
+
+        public virtual string ReturnDuration()
+        {
+            string duration = "";
+            return duration;
+        }
+
+        public virtual string ReturnRunTime()
+        {
+            string runTime = "";
+            return runTime;
+        }
         public Item()
         {
 
         }
-        public  Item(string title, string author, string description, bool checkedIn, DateTime dueDate)
+        public  Item(string mediaType, string title, string author, string description, bool checkedIn, DateTime dueDate)
         {
+            this.mediaType = mediaType;
             this.title = title;
             this.author = author;
             this.description = description;

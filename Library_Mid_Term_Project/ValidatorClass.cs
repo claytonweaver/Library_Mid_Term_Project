@@ -7,43 +7,34 @@ namespace Library_Mid_Term_Project
 {
     class ValidatorClass
     {
-        public static string GetUserInput(string response)
+        public string GetUserInput(string response)
         {
             Console.Write(response);
             return Console.ReadLine();
         }
 
 
-        public static string GetValidInput(string input, int min, int max)
+        public int GetValidInput(string input, int min, int max)
         {
-
             try
             {
-
+                int selection = int.Parse(input);
+                if(selection < min && selection > max)
+                {
+                    return selection;
+                }
+                else
+                {
+                    return GetValidInput(GetUserInput($"Invalid input.  Please enter an option between {min} - {max}"), min, max);
+                }
             }
-            catch
+            catch(FormatException)
             {
-
+                return GetValidInput(GetUserInput($"Invalid input. Please enter an option of {min} - {max}"), min, max);
             }
-            return "";
         }
 
-        //public static string GetValidInput(string input)
-        //{
-        //    if (input ==)
-        //    {
-
-
-        //    }
-        //    else if ()
-        //    {
-
-        //    }
-        //    else
-        //    {
-
-        //    }
-        //}
+        
 
         public static int GetValidNumber(string input, int max)
         {
