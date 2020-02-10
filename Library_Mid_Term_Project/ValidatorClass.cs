@@ -9,12 +9,8 @@ namespace Library_Mid_Term_Project
     {
         public string GetUserInput(string response)
         {
-            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.Write(response);
-            string userInput = Console.ReadLine();
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.Clear();
-            return userInput;
+            return Console.ReadLine();
         }
 
 
@@ -25,7 +21,7 @@ namespace Library_Mid_Term_Project
             try
             {
                 int selection = int.Parse(input);
-                if(selection >= min && selection <= max)
+                if (selection < min && selection > max)
                 {
                     return selection;
                 }
@@ -34,35 +30,35 @@ namespace Library_Mid_Term_Project
                     return GetValidInput(session.GetUserInput($"Invalid input.  Please enter an option between {min} - {max}"), min, max);
                 }
             }
-            catch(FormatException)
+            catch (FormatException)
             {
                 return GetValidInput(session.GetUserInput($"Invalid input. Please enter an option of {min} - {max}"), min, max);
             }
         }
 
 
-        public  int GetValidNumber(string input, int max)
+        public int GetValidNumber(string input, int max)
         {
-            while(true)
+            while (true)
             {
-            int option;
-            //decided to use a try catch here because to make sure input it a number and to change what our max,
-            //it is listed above in this class. 
-            try
-            {
-                Console.Write(input);
-                option =  int.Parse(Console.ReadLine());
-                if (option >= 0 && option <= max)
+                int option;
+                //decided to use a try catch here because to make sure input it a number and to change what our max,
+                //it is listed above in this class. 
+                try
+                {
+                    Console.Write(input);
+                    option = int.Parse(Console.ReadLine());
+                    if (option < 0 || option > max)
+                    {
+                        option = -1;
+                        Console.WriteLine("Please enter a valid number!");
+                    }
+                }
+                catch
                 {
                     option = -1;
-                    Console.WriteLine("Please enter a valid number!");
                 }
-            }
-            catch
-            {
-                option = -1; 
-            }
-            return option;
+                return option;
             }
         }
 
@@ -71,7 +67,7 @@ namespace Library_Mid_Term_Project
         {
             string output = "Invalid";
             bool validInput = false;
-            while(validInput == false)
+            while (validInput == false)
             {
                 string word = Console.ReadLine();
                 foreach (string book in list)
