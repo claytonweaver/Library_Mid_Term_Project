@@ -20,10 +20,11 @@ namespace Library_Mid_Term_Project
             PrintMainMenu();
         }
 
-        private void PrintMainMenu()
+        public void PrintMainMenu()
         {
             Console.WriteLine();
             bool validChoice = true;
+            Console.ForegroundColor = ConsoleColor.White;
             while (validChoice)
             {
                 Console.WriteLine("Welcome to the Libarary!");
@@ -284,33 +285,23 @@ namespace Library_Mid_Term_Project
         {
             ValidatorClass session = new ValidatorClass();
             Console.WriteLine("Search by:\n     1. Author\n     2: Title\n     3. Return to Main Menu");
-<<<<<<< HEAD
+
             int userInput = this.session.GetValidInput(this.session.GetUserInput("User Option: "), 1, 3); 
-=======
-            int userInput = this.session.GetValidInput(this.session.GetUserInput("User Option: "), 1, 3);
->>>>>>> c9099c4be6a6cb977afc4ddc614477612e175255
 
             switch (userInput)
             {
                 case 1:
-<<<<<<< HEAD
+
                     Console.Clear();
-                    session.SearchByAuthor(libraryList);
-                    
-                    break;
-                case 2:
-                    Console.Clear();
-                    session.SearchByTitle(libraryList);
-=======
                     string userAuthor = session.GetUserInput("Enter the name of the author: ");
                     session.SearchByAuthor(libraryList, userAuthor);
                     UserContinue();
                     break;
+
                 case 2:
                     string userTitle = session.GetUserInput("Enter the name of the title: ");
                     session.SearchByTitle(libraryList, userTitle);
                     UserContinue();
->>>>>>> c9099c4be6a6cb977afc4ddc614477612e175255
                     break;
 
                 case 3:
@@ -405,7 +396,6 @@ namespace Library_Mid_Term_Project
             UserContinue();
         }
         public void UserContinue()
-
         {
             bool userContinue = true;
             while (userContinue)
@@ -433,7 +423,7 @@ namespace Library_Mid_Term_Project
             }
         }
 
-        private void ExitProgram()
+        public void ExitProgram()
         {
             ItemListToText(libraryList);
             Environment.Exit(0);
