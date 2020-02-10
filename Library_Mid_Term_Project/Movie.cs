@@ -6,10 +6,11 @@ namespace Library_Mid_Term_Project
 {
     class Movie : Item
     {
+        private string duration;
         //properties
-        private string Duration { get; set;}
+        public string Duration { get; set;}
 
-        public Movie(string mediaType, string title, string author, string duration, string description, bool checkedIn, bool checkedOut, DateTime dueDate) : base(mediaType, title, author, description, checkedIn, dueDate)
+        public Movie(string mediaType, string title, string author, string description, bool checkedIn, DateTime dueDate, string duration) : base(mediaType, title, author, description, checkedIn, dueDate)
         {
             this.Duration = duration;
         }

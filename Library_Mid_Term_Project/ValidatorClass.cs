@@ -9,8 +9,12 @@ namespace Library_Mid_Term_Project
     {
         public string GetUserInput(string response)
         {
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.Write(response);
-            return Console.ReadLine();
+            string userInput = Console.ReadLine();
+            Console.ForegroundColor = ConsoleColor.White;
+            //Console.Clear();
+            return userInput;
         }
 
 
@@ -22,22 +26,24 @@ namespace Library_Mid_Term_Project
             {
                 int selection = int.Parse(input);
                 if (selection >= min && selection <= max)
+
                 {
                     return selection;
                 }
                 else
                 {
-                    return GetValidInput(session.GetUserInput($"Invalid input.  Please enter an option between {min} - {max}"), min, max);
+                    return GetValidInput(session.GetUserInput($"Invalid input.  Please enter an option between {min} - {max}: "), min, max);
                 }
             }
             catch (FormatException)
             {
-                return GetValidInput(session.GetUserInput($"Invalid input. Please enter an option of {min} - {max}"), min, max);
+                return GetValidInput(session.GetUserInput($"Invalid input. Please enter an option of {min} - {max}: "), min, max);
             }
         }
 
 
         public int GetValidNumber(string input, int max)
+
         {
             while (true)
             {
@@ -48,17 +54,16 @@ namespace Library_Mid_Term_Project
                 {
                     Console.Write(input);
                     option = int.Parse(Console.ReadLine());
-                    if (option < 0 || option > max)
+                    if (option >= 0 && option <= max)
                     {
                         option = -1;
-                        Console.WriteLine("Please enter a valid number!");
                     }
+                    return option;
                 }
                 catch
                 {
-                    option = -1;
+
                 }
-                return option;
             }
         }
 

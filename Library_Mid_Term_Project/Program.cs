@@ -8,6 +8,7 @@ namespace Library_Mid_Term_Project
     {
         static void Main(string[] args)
         {
+
             ValidatorClass validation = new ValidatorClass();
             LibraryApp session = new LibraryApp();
             session.StartLibrary();
