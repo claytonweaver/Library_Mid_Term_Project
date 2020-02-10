@@ -7,14 +7,25 @@ namespace Library_Mid_Term_Project
 {
     class LibraryApp
     {
+<<<<<<< HEAD
         List<Item> libraryList = new List<Item>();
+=======
+        // read in the text file to a list... somewhere... probably at the top, just once. 
+        // Maybe inside of StartLibrary() or PrintMainMenu(). 
+        // We'll READ the file when prepare to display a list of all the Books/Items, but again, just once, near the top of the program. We don't need to read the file all over the place
+        // We'll WRITE to the file when a user checks in, or checks out a Book/Item
+
+        List<Item> libraryList = new List<Item>(); //<= GONNA NEED THIS ASAP
+        private object authorlist;
+>>>>>>> 623d81c3e818b0df4dff9ecbbc21aabc74535bd7
         ValidatorClass session = new ValidatorClass();
+
 
 
         public void StartLibrary()
         {
             GetItems(libraryList);
-            PrintMainMenu();
+            PrintMainMenu();                    
         }
 
         private void PrintMainMenu()
@@ -25,7 +36,7 @@ namespace Library_Mid_Term_Project
             {
                 Console.WriteLine("Welcome to the Libarary!");
                 Console.WriteLine("1. Show Library Collection\n2. Search for Item\n3. Check out item\n4. Check in item\n5. Exit");
-                int userSelection = session.GetValidInput(session.GetUserInput("Please choose from an option above:"), 1, 5);
+                int userSelection = session.GetValidInput(session.GetUserInput("Please choose from an option above: "), 1, 5);
                 Console.Clear();
                 validChoice = false;
 
@@ -57,7 +68,6 @@ namespace Library_Mid_Term_Project
         //Fields of abstract class string mediaType, string title, string author, string description, bool checkedIn, DateTime dueDat
         public List<Item> GetItems(List<Item> items)
         {
-          
             StreamReader reader = new StreamReader("../../../ItemsInventory.txt");
 
             string line = reader.ReadLine();
@@ -89,6 +99,7 @@ namespace Library_Mid_Term_Project
                     items.Add(new CD(itemInfo[0], itemInfo[1], itemInfo[2], (itemInfo[3]), bool.Parse(itemInfo[4]), DateTime.Parse(itemInfo[5]), (itemInfo[6])));
                     line = reader.ReadLine();
                 }
+
             }
             reader.Close();
 
@@ -97,7 +108,7 @@ namespace Library_Mid_Term_Project
 
         public void ItemListToText(List<Item> items)
         {
-            StreamWriter writer = new StreamWriter("../../../ItemsInventoryKYLESTEST");
+            StreamWriter writer = new StreamWriter("../../../ItemsInventory.txt");
 
             // looks at the libraryList declared aaaaaallllll the way at the top, and iterates through them.
             // properties like CheckedIn or DueDate will be modified in the CheckIn/CheckOut method, and this method will write those changes ontop of the old .txt file
@@ -105,19 +116,40 @@ namespace Library_Mid_Term_Project
 
             for (int i = 0; i < libraryList.Count; i++)
             {
-
+                //book
                 if (items[i] is Book)
                 {
                     //unboxing magic
                     Item item = items[i];
-                    Book book = (Book)item; 
+                    Book book = (Book)item;
 
-                    writer.WriteLine($"{book.Title}|{book.Author}|{book.NumberOfPages}|{book.Description}|{book.CheckedIn}|{book.DueDate}");
+                    writer.WriteLine($"{book.MediaType}|{book.Title}|{book.Author}|{book.Description}|{book.CheckedIn}|{book.DueDate}|{book.NumberOfPages}");
                 }
-                else if (items[i] is Item)
+                //CD
+                else if (items[i] is CD)
                 {
-                    // it's not an elegant solution, but depending on item type, we can setup the writer to write in different ways, to match different constructors
+                    Item item = items[i];
+                    CD cd = (CD)item;
+                    writer.WriteLine($"{cd.MediaType}|{cd.Title}|{cd.Author}|{cd.Description}|{cd.CheckedIn}|{cd.DueDate}|{cd.Length}");
                 }
+                //magazine
+                else if (items[i] is Magazine)
+                {
+                    Item item = items[i];
+                    Magazine mag = (Magazine)item;
+                    writer.WriteLine($"{mag.MediaType}|{mag.Title}|{mag.Author}|{mag.Description}|{mag.CheckedIn}|{mag.DueDate}|{mag.NumberOfPages}");
+                }
+                //movie 
+                else if (items[i] is Movie)
+                {
+                    Item item = items[i];
+                    Movie movie = (Movie)item;
+                    writer.WriteLine($"{movie.MediaType}|{movie.Title}|{movie.Author}|{movie.Description}|{movie.CheckedIn}|{movie.DueDate}|{movie.Duration}");
+
+                }
+
+                //ADD OTHER IF ELSE FOR MOVIES,CDs, ETC.
+
             }
             writer.Close();
         }
@@ -129,12 +161,21 @@ namespace Library_Mid_Term_Project
             foreach (Item item in libraryList)
             {
                 //go back and format this or, inside of the Item (or children) class, setup a DisplayItem(); method
+<<<<<<< HEAD
+=======
+
+>>>>>>> 623d81c3e818b0df4dff9ecbbc21aabc74535bd7
                 if (item is Book && !item.CheckedIn)
                 {   
                     Book b = (Book)item;
-                    Console.WriteLine($"{i} - TITLE: {item.Title}\n    AUTHOR: {item.Author}\n    NUMBER OF PAGES: {b.NumberOfPages}\n    DESCRIPTION: {item.Description}");
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    Console.WriteLine($"{i} - TITLE: {item.Title}");
+
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.WriteLine($"    AUTHOR: {item.Author}\n    NUMBER OF PAGES: {b.NumberOfPages}\n    DESCRIPTION: {item.Description}");
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine($"      DUE DATE: {item.DueDate}");
+                    Console.WriteLine($"     DUE DATE: {item.DueDate}");
+                    Console.ResetColor();
                     Console.ForegroundColor = ConsoleColor.White;
                     Console.WriteLine("=============================================================================================================");
                 }
@@ -142,10 +183,14 @@ namespace Library_Mid_Term_Project
                 else if(item is Book && item.CheckedIn)
                 {
                     Book b = (Book)item;
-                    Console.WriteLine($"{i} - TITLE: {item.Title}\n    AUTHOR: {item.Author}\n    NUMBER OF PAGES: {b.NumberOfPages}");
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    Console.WriteLine($"{i} - TITLE: {item.Title}");
+
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.WriteLine($"    AUTHOR: {item.Author}\n    NUMBER OF PAGES: {b.NumberOfPages}");
                     Console.WriteLine($"    Description: {item.Description}");
                     Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine($"        Available for CheckOut");
+                    Console.WriteLine($"    Available for CheckOut");
                     Console.ForegroundColor = ConsoleColor.White;
                     Console.WriteLine("=============================================================================================================");
                 }
@@ -153,7 +198,11 @@ namespace Library_Mid_Term_Project
                 if (item is Magazine && !item.CheckedIn)
                 {
                     Magazine b = (Magazine)item;
-                    Console.WriteLine($"{i} - TITLE: {item.Title}\n    AUTHOR: {item.Author}\n    NUMBER OF PAGES: {b.NumberOfPages}\n    DESCRIPTION: {item.Description}");
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    Console.WriteLine($"{i} - TITLE: {item.Title}");
+
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.WriteLine($"    AUTHOR: {item.Author}\n    NUMBER OF PAGES: {b.NumberOfPages}\n    DESCRIPTION: {item.Description}");
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine($"      DUE DATE: {item.DueDate}");
                     Console.ForegroundColor = ConsoleColor.White;
@@ -163,18 +212,31 @@ namespace Library_Mid_Term_Project
                 else if (item is Magazine && item.CheckedIn)
                 {
                     Magazine b = (Magazine)item;
-                    Console.WriteLine($"{i} - TITLE: {item.Title}\n    AUTHOR: {item.Author}\n    NUMBER OF PAGES: {b.NumberOfPages}");
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    Console.WriteLine($"{i} - TITLE: {item.Title}");
+                    Console.ForegroundColor = ConsoleColor.White;
+
+                    Console.WriteLine($"    AUTHOR: {item.Author}\n    NUMBER OF PAGES: {b.NumberOfPages}");
                     Console.WriteLine($"    Description: {item.Description}");
                     Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine($"        Available for CheckOut");
+                    Console.WriteLine($"    Available for CheckOut");
                     Console.ForegroundColor = ConsoleColor.White;
                     Console.WriteLine("=============================================================================================================");
                 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 623d81c3e818b0df4dff9ecbbc21aabc74535bd7
                 if (item is CD && !item.CheckedIn)
                 {
                     CD b = (CD)item;
-                    Console.WriteLine($"{i} - TITLE: {item.Title}\n    AUTHOR: {item.Author}\n    CD Length: {b.Length}\n    DESCRIPTION: {item.Description}");
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    Console.WriteLine($"{i} - TITLE: {item.Title}");
+
+                    Console.ForegroundColor = ConsoleColor.White;
+
+                    Console.WriteLine($"    AUTHOR: {item.Author}\n    CD Length: {b.Length}\n    DESCRIPTION: {item.Description}");
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine($"      DUE DATE: {item.DueDate}");
                     Console.ForegroundColor = ConsoleColor.White;
@@ -184,10 +246,15 @@ namespace Library_Mid_Term_Project
                 else if (item is CD && item.CheckedIn)
                 {
                     CD b = (CD)item;
-                    Console.WriteLine($"{i} - TITLE: {item.Title}\n    AUTHOR: {item.Author}\n    CD Length: {b.Length}");
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    Console.WriteLine($"{i} - TITLE: {item.Title}");
+
+                    Console.ForegroundColor = ConsoleColor.White;
+
+                    Console.WriteLine($"    AUTHOR: {item.Author}\n    CD Length: {b.Length}");
                     Console.WriteLine($"    Description: {item.Description}");
                     Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine($"        Available for CheckOut");
+                    Console.WriteLine($"    Available for CheckOut");
                     Console.ForegroundColor = ConsoleColor.White;
                     Console.WriteLine("=============================================================================================================");
                 }
@@ -195,7 +262,12 @@ namespace Library_Mid_Term_Project
                 if (item is Movie && !item.CheckedIn)
                 {
                     Movie b = (Movie)item;
-                    Console.WriteLine($"{i} - TITLE: {item.Title}\n    AUTHOR: {item.Author}\n    Movie Length: {b.Duration}\n    DESCRIPTION: {item.Description}");
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    Console.WriteLine($"{i} - TITLE: {item.Title}");
+
+                    Console.ForegroundColor = ConsoleColor.White;
+
+                    Console.WriteLine($"    AUTHOR: {item.Author}\n    Movie Length: {b.Duration}\n    DESCRIPTION: {item.Description}");
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine($"      DUE DATE: {item.DueDate}");
                     Console.ForegroundColor = ConsoleColor.White;
@@ -205,10 +277,15 @@ namespace Library_Mid_Term_Project
                 else if (item is Movie && item.CheckedIn)
                 {
                     Movie b = (Movie)item;
-                    Console.WriteLine($"{i} - TITLE: {item.Title}\n    AUTHOR: {item.Author}\n    Movie Length: {b.Duration}");
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    Console.WriteLine($"{i} - TITLE: {item.Title}");
+
+                    Console.ForegroundColor = ConsoleColor.White;
+
+                    Console.WriteLine($"    AUTHOR: {item.Author}\n    Movie Length: {b.Duration}");
                     Console.WriteLine($"    Description: {item.Description}");
                     Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine($"        Available for CheckOut");
+                    Console.WriteLine($"    Available for CheckOut");
                     Console.ForegroundColor = ConsoleColor.White;
                     Console.WriteLine("=============================================================================================================");
                 }
@@ -220,16 +297,18 @@ namespace Library_Mid_Term_Project
         //should allow user to see a list item based on a search for author or title
         private void SearchForItem() //will need a 'List<Item> libraryList' parameter
         {
+            ValidatorClass session = new ValidatorClass();
             Console.WriteLine("Search by:\n     1. Author\n     2: Title\n      3. Return to Main Menu");
-            int userInput = session.GetValidInput(session.GetUserInput("User Option: "), 1, 3); 
+            int userInput = this.session.GetValidInput(this.session.GetUserInput("User Option: "), 1, 3); 
 
             switch (userInput)
             {
                 case 1:
-
+                    session.SearchByAuthor(libraryList);
+                    
                     break;
                 case 2:
-
+                    session.SearchByTitle(libraryList);
                     break;
 
                 case 3:
@@ -241,56 +320,79 @@ namespace Library_Mid_Term_Project
         private void CheckOutItem() //will need a 'List<Item> libraryList' parameter
         {
             ValidatorClass session = new ValidatorClass();
-            //do stuff
 
             // probably print the list of items that checked in
             Console.WriteLine("\nHere's the list of currently available items:");
-            int count = 0;
+            int count = 1;
+            Dictionary<int, string> tempDict = new Dictionary<int, string>();
+
             foreach (Item item in libraryList)
             {
                 if (item.CheckedIn)
                 {
                     Console.ForegroundColor = ConsoleColor.Cyan;
+<<<<<<< HEAD
                     Console.WriteLine($"{count+ 1}: {item.Title} {item.CheckedIn}");
+=======
+                    Console.WriteLine($"{count}: {item.Title}");
+>>>>>>> 623d81c3e818b0df4dff9ecbbc21aabc74535bd7
                     Console.ResetColor();
+                    tempDict.Add(count, item.Title);
                     count++;
                 }
             }
 
+          
+
             // asks user to select between 1 - i, where i is the current # of 'checked in' items in the list
-            int indexOffset = -1;
-            int choice = session.GetValidInput(session.GetUserInput("Enter in the corresponding number by the item you would like to checkout: "), 1, count);
-            libraryList[choice].CheckedIn = false;
 
-            ItemListToText(libraryList);
-            // are you sure? 
-
-            // HERE'S WHERE WE WRITE TO .TXT
-            //convert list back to .txt file, propigate the changes, and save over the old .txt file
+            int choice = session.GetValidInput("\nWhich item would you like to check out?",1, count -1 );
+            bool gotValue = tempDict.TryGetValue(choice, out string title);
+            foreach(var item in libraryList)
+            {
+                if (item.Title == title)
+                {
+                    item.CheckedIn = false;
+                    SetItemDueDate(item);
+                }
+            }
 
             UserContinue();
         }
 
         private void CheckInItem() //will need a 'List<Item> libraryList' parameter
         {
-            // probably print the list of items that are checked out
-            Console.WriteLine("Here's the list of currently checked out items:");
-            int i = 0;
+            ValidatorClass session = new ValidatorClass();
+            //do stuff
+
+            // probably print the list of items that checked in
+            Console.WriteLine("\nHere's the list of currently available items:");
+            int count = 1;
+            Dictionary<int, string> tempDict = new Dictionary<int, string>();
+
             foreach (Item item in libraryList)
             {
                 if (item.CheckedIn == true)
                 {
-                    Console.WriteLine($"{i+1}: {item.Title} --- {item.CheckedIn}");
-                    i++;
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine($"{count}: {item.Title}");
+                    Console.ResetColor();
+                    tempDict.Add(count, item.Title);
+                    count++;
+
                 }
             }
-
-            Console.WriteLine("What are you checking in?");
-
-            //asks user to make a selction between 1 - i, where i is the current # of 'checked out' items in the list
-
-
-            //convert list back to .txt file, propigate the changes, and save over the old .txt file
+            int choice = session.GetValidInput("\nWhich item would you like to check out?", 1, count -1);
+            //int choice = session.GetValidNumber("\nWhich item would you like to check out?", count - 1);
+            bool gotValue = tempDict.TryGetValue(choice, out string title);
+            foreach (var item in libraryList)
+            {
+                if (item.Title == title)
+                {
+                    item.CheckedIn = true;
+                    SetItemDueDate(item);
+                }
+            }
 
             UserContinue();
         }
@@ -320,10 +422,19 @@ namespace Library_Mid_Term_Project
                 }
             }
         }
+
         private void ExitProgram()
         {
+            ItemListToText(libraryList);
             Environment.Exit(0);
+            
         }
 
+        private void SetItemDueDate(Item item)
+        {
+            var now = DateTime.Now;
+            var newDate = now.AddDays(14);
+            item.DueDate = newDate;
+        }
     }
 }
