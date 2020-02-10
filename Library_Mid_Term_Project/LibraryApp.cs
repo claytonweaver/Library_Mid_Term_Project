@@ -288,17 +288,18 @@ namespace Library_Mid_Term_Project
         private void SearchForItem() //will need a 'List<Item> libraryList' parameter
         {
             ValidatorClass session = new ValidatorClass();
-            Console.WriteLine("Search by:\n     1. Author\n     2: Title\n      3. Return to Main Menu");
+            Console.WriteLine("Search by:\n     1. Author\n     2: Title\n     3. Return to Main Menu");
             int userInput = this.session.GetValidInput(this.session.GetUserInput("User Option: "), 1, 3);
 
             switch (userInput)
             {
                 case 1:
                     session.SearchByAuthor(libraryList);
-
+                    UserContinue();
                     break;
                 case 2:
                     session.SearchByTitle(libraryList);
+                    UserContinue();
                     break;
 
                 case 3:
@@ -326,10 +327,12 @@ namespace Library_Mid_Term_Project
                     tempDict.Add(count, item.Title);
                     count++;
                 }
+                else
+                {
+                    Console.WriteLine("Oopsies! There are no checked in items. Library closed...");
+                    UserContinue();
+                }
             }
-
-
-
             // asks user to select between 1 - i, where i is the current # of 'checked in' items in the list
 
             int choice = session.GetValidInput("\nWhich item would you like to check out?", 1, count - 1);
@@ -352,7 +355,7 @@ namespace Library_Mid_Term_Project
             //do stuff
 
             // probably print the list of items that checked in
-            Console.WriteLine("\nHere's the list of currently available items:");
+            Console.WriteLine("\nHere's the list of currently checked out items:");
             int count = 1;
             Dictionary<int, string> tempDict = new Dictionary<int, string>();
 
@@ -366,6 +369,11 @@ namespace Library_Mid_Term_Project
                     tempDict.Add(count, item.Title);
                     count++;
 
+                }
+                else
+                {
+                    Console.WriteLine("Oopsies! There's no checked out items.");
+                    UserContinue();
                 }
             }
             int choice = session.GetValidInput("\nWhich item would you like to check out?", 1, count - 1);
@@ -389,7 +397,7 @@ namespace Library_Mid_Term_Project
             while (userContinue)
             {
                 Console.WriteLine();
-                string userSelection = session.GetUserInput("Would you like to continue? (y/n)");
+                string userSelection = session.GetUserInput("Would you like to continue? (y/n): ");
                 userContinue = false;
 
                 switch (userSelection)
@@ -402,7 +410,7 @@ namespace Library_Mid_Term_Project
                         ExitProgram();
                         break;
                     default:
-                        Console.WriteLine("Please make a valid selection (y or n).");
+                        Console.WriteLine("Please make a valid selection (y or n): ");
                         userContinue = true;
                         break;
                 }

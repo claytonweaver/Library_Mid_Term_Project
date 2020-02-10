@@ -13,7 +13,6 @@ namespace Library_Mid_Term_Project
             Console.Write(response);
             string userInput = Console.ReadLine();
             Console.ForegroundColor = ConsoleColor.White;
-            //Console.Clear();
             return userInput;
         }
 
@@ -40,7 +39,6 @@ namespace Library_Mid_Term_Project
                 return GetValidInput(session.GetUserInput($"Invalid input. Please enter an option of {min} - {max}: "), min, max);
             }
         }
-
 
         public int GetValidNumber(string input, int max)
 
@@ -78,10 +76,13 @@ namespace Library_Mid_Term_Project
                 titleNum++;
             }
             int input = GetValidInput(GetUserInput("Please choose a title: "), 1, titleNum);
-
-            Console.WriteLine($"TITLE: {titleList[input - 1].Title} - AUTHOR: {titleList[input - 1].Author}\n   DESCRIPTION: {titleList[input - 1].Description}");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine();
+            Console.WriteLine($"TITLE: {titleList[input - 1].Title}");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine($" - AUTHOR: {titleList[input - 1].Author}\nDESCRIPTION: {titleList[input - 1].Description}");
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine($"      DUE DATE: {titleList[input - 1].DueDate}");
+            Console.WriteLine($"DUE DATE: {titleList[input - 1].DueDate}");
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("=============================================================================================================");
         }
@@ -96,10 +97,13 @@ namespace Library_Mid_Term_Project
                 authorNum++;
             }
             int inPut = GetValidInput(GetUserInput("Please choose an author: "), 1, authorNum);
-
-            Console.WriteLine($"AUTHOR: {authorList[inPut - 1].Author} - TITLE: {authorList[inPut - 1].Title}\n   DESCRIPTION: {authorList[inPut - 1].Description}");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine();
+            Console.WriteLine($"TITLE: {authorList[inPut - 1].Title}");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine($"AUTHOR: {authorList[inPut - 1].Author}\nDESCRIPTION: {authorList[inPut - 1].Description}");
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine($"      DUE DATE: {authorList[inPut - 1].DueDate}");
+            Console.WriteLine($"DUE DATE: {authorList[inPut - 1].DueDate}");
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("=============================================================================================================");
         }
