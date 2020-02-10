@@ -288,7 +288,7 @@ namespace Library_Mid_Term_Project
         private void SearchForItem() //will need a 'List<Item> libraryList' parameter
         {
             ValidatorClass session = new ValidatorClass();
-            Console.WriteLine("Search by:\n     1. Author\n     2: Title\n      3. Return to Main Menu");
+            Console.WriteLine("Search by:\n     1. Author\n     2: Title\n     3. Return to Main Menu");
             int userInput = this.session.GetValidInput(this.session.GetUserInput("User Option: "), 1, 3); 
 
             switch (userInput)
@@ -389,7 +389,7 @@ namespace Library_Mid_Term_Project
             while (userContinue)
             {
                 Console.WriteLine();
-                string userSelection = session.GetUserInput("Would you like to continue? (y/n)");
+                string userSelection = session.GetUserInput("Would you like to continue? (y/n): ");
                 userContinue = false;
 
                 switch (userSelection)
@@ -402,7 +402,7 @@ namespace Library_Mid_Term_Project
                         ExitProgram();
                         break;
                     default:
-                        Console.WriteLine("Please make a valid selection (y or n).");
+                        Console.WriteLine("Please make a valid selection (y or n): ");
                         userContinue = true;
                         break;
                 }
