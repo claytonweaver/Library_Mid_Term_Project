@@ -74,7 +74,7 @@ namespace Library_Mid_Term_Project
             }
             int input = GetValidInput(GetUserInput("Please choose a title: "), 1, titleNum);
 
-            Console.WriteLine($"TITLE: {titleList[input - 1].Title}} - AUTHOR: {titleList[input - 1].Author}\n   DESCRIPTION: {titleList[input - 1].Description}");
+            Console.WriteLine($"TITLE: {titleList[input - 1].Title} - AUTHOR: {titleList[input - 1].Author}\n   DESCRIPTION: {titleList[input - 1].Description}");
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine($"      DUE DATE: {titleList[input - 1].DueDate}");
             Console.ForegroundColor = ConsoleColor.White;
