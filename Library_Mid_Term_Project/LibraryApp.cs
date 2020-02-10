@@ -13,7 +13,7 @@ namespace Library_Mid_Term_Project
         // We'll WRITE to the file when a user checks in, or checks out a Book/Item
 
         List<Item> libraryList = new List<Item>(); //<= GONNA NEED THIS ASAP
-
+        private object authorlist;
 
         public void StartLibrary()
         {
@@ -60,7 +60,7 @@ namespace Library_Mid_Term_Project
         //Fields of abstract class string mediaType, string title, string author, string description, bool checkedIn, DateTime dueDat
         public List<Item> GetItems(List<Item> items)
         {
-          
+
             StreamReader reader = new StreamReader("../../../ItemsInventory.txt");
 
             string line = reader.ReadLine();
@@ -123,7 +123,7 @@ namespace Library_Mid_Term_Project
                 {
                     //unboxing magic
                     Item item = items[i];
-                    Book book = (Book)item; 
+                    Book book = (Book)item;
 
                     writer.WriteLine($"{book.Title}|{book.Author}|{book.NumberOfPages}|{book.Description}|{book.CheckedIn}|{book.DueDate}");
                 }
@@ -135,7 +135,7 @@ namespace Library_Mid_Term_Project
             writer.Close();
         }
 
-        
+
         private void ListItems() //will need a 'List<Item> libraryList' parameter
         {
             int i = 1;
@@ -144,7 +144,7 @@ namespace Library_Mid_Term_Project
             {
                 //go back and format this or, inside of the Item (or children) class, setup a DisplayItem(); method
                 if (item is Book && item.CheckedIn == false)
-                {   
+                {
                     Book b = (Book)item;
                     Console.WriteLine($"{i} - TITLE: {item.Title}\n    AUTHOR: {item.Author}\n    NUMBER OF PAGES: {b.NumberOfPages}\n    DESCRIPTION: {item.Description}");
                     Console.ForegroundColor = ConsoleColor.Red;
@@ -154,7 +154,7 @@ namespace Library_Mid_Term_Project
 
                     Console.WriteLine($"{i}: Title: {item.Title} Author: {item.Author} Status: {item.CheckedIn} Due Date: {item.DueDate}\n Description: {item.Description}");
                 }
-                else if(item is Book)
+                else if (item is Book)
                 {
                     Book b = (Book)item;
                     Console.WriteLine($"{i} - TITLE: {item.Title}\n    AUTHOR: {item.Author}\n    NUMBER OF PAGES: {b.NumberOfPages}");
@@ -173,16 +173,17 @@ namespace Library_Mid_Term_Project
         private void SearchForItem() //will need a 'List<Item> libraryList' parameter
         {
             ValidatorClass validation = new ValidatorClass();
-            Console.WriteLine("Search by:\n     1. Author\n     2: Title\n      3. Return to Main Menu");
+            //Console.WriteLine("Search by:\n     1. Author\n     2: Title\n      3. Return to Main Menu");
             int userInput = validation.GetValidInput(validation.GetUserInput("Search by:\n     1. Author\n     2: Title\n      3. Return to Main Menu"), 1, 3); //Console.ReadLine(); // needs real validation 
 
             switch (userInput)
             {
                 case 1:
-
+                    validation.SearchByAuthor(libraryList);
+                    
                     break;
                 case 2:
-
+                    validation.SearchByTitle(libraryList);
                     break;
 
                 case 3:
