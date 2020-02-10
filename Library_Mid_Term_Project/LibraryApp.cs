@@ -329,11 +329,7 @@ namespace Library_Mid_Term_Project
                     tempDict.Add(count, item.Title);
                     count++;
                 }
-                else
-                {
-                    Console.WriteLine("Oopsies! There are no checked in items. Library closed...");
-                    UserContinue();
-                }
+                
             }
             // asks user to select between 1 - i, where i is the current # of 'checked in' items in the list
 
@@ -372,14 +368,9 @@ namespace Library_Mid_Term_Project
                     count++;
 
                 }
-                else
-                {
-                    Console.WriteLine("Oopsies! There's no checked out items.");
-                    UserContinue();
-                }
+
             }
             int choice = session.GetValidInput("\nWhich item would you like to check out?", 1, count - 1);
-            //int choice = session.GetValidNumber("\nWhich item would you like to check out?", count - 1);
             bool gotValue = tempDict.TryGetValue(choice, out string title);
             foreach (var item in libraryList)
             {

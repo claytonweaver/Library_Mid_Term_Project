@@ -13,6 +13,7 @@ namespace Library_Mid_Term_Project
             Console.Write(response);
             string userInput = Console.ReadLine();
             Console.ForegroundColor = ConsoleColor.White;
+            Console.ResetColor();
             return userInput;
         }
 
@@ -31,12 +32,12 @@ namespace Library_Mid_Term_Project
                 }
                 else
                 {
-                    return GetValidInput(session.GetUserInput($"Invalid input.  Please enter an option between {min} - {max}: "), min, max);
+                    return GetValidInput(session.GetUserInput($"Please enter an option between {min} - {max}: "), min, max);
                 }
             }
             catch (FormatException)
             {
-                return GetValidInput(session.GetUserInput($"Invalid input. Please enter an option of {min} - {max}: "), min, max);
+                return GetValidInput(session.GetUserInput($"Please enter an option of {min} - {max}: "), min, max);
             }
         }
 
@@ -65,48 +66,7 @@ namespace Library_Mid_Term_Project
             }
         }
 
-        //maybe add search for title or search for author... definitley return type with 
-        //public void SearchByTitle(List<Item> titleList)
-        //{
-        //    int titleNum = 0;
-        //    foreach (Item titles in titleList)
-        //    {
-        //        string titleName = titles.Title;
-        //        Console.WriteLine($"{titleNum + 1}. {titleName}");
-        //        titleNum++;
-        //    }
-        //    int input = GetValidInput(GetUserInput("Please choose a title: "), 1, titleNum);
-        //    Console.ForegroundColor = ConsoleColor.Cyan;
-        //    Console.WriteLine();
-        //    Console.WriteLine($"TITLE: {titleList[input - 1].Title}");
-        //    Console.ForegroundColor = ConsoleColor.White;
-        //    Console.WriteLine($" - AUTHOR: {titleList[input - 1].Author}\nDESCRIPTION: {titleList[input - 1].Description}");
-        //    Console.ForegroundColor = ConsoleColor.Red;
-        //    Console.WriteLine($"DUE DATE: {titleList[input - 1].DueDate}");
-        //    Console.ForegroundColor = ConsoleColor.White;
-        //    Console.WriteLine("=============================================================================================================");
-        //}
-
-        //public void SearchByAuthor(List<Item> authorList)
-        //{
-        //    int authorNum = 0;
-        //    foreach (Item authors in authorList)
-        //    {
-        //        string authorName = authors.Author;
-        //        Console.WriteLine($"{authorNum + 1}. {authorName}");
-        //        authorNum++;
-        //    }
-        //    int inPut = GetValidInput(GetUserInput("Please choose an author: "), 1, authorNum);
-        //    Console.ForegroundColor = ConsoleColor.Cyan;
-        //    Console.WriteLine();
-        //    Console.WriteLine($"TITLE: {authorList[inPut - 1].Title}");
-        //    Console.ForegroundColor = ConsoleColor.White;
-        //    Console.WriteLine($"AUTHOR: {authorList[inPut - 1].Author}\nDESCRIPTION: {authorList[inPut - 1].Description}");
-        //    Console.ForegroundColor = ConsoleColor.Red;
-        //    Console.WriteLine($"DUE DATE: {authorList[inPut - 1].DueDate}");
-        //    Console.ForegroundColor = ConsoleColor.White;
-        //    Console.WriteLine("=============================================================================================================");
-        //}
+        
 
         public void SearchByTitle(List<Item> items, string userInput)
         {
