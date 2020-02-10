@@ -255,12 +255,9 @@ namespace Library_Mid_Term_Project
 
             // probably print the list of items that checked in
             Console.WriteLine("\nHere's the list of currently available items:");
-<<<<<<< HEAD
             int count = 1;
             Dictionary<int, string> tempDict = new Dictionary<int, string>();
-=======
-            int count = 0;
->>>>>>> d18549c26d1f0ac33bcaebd3d8d93e807f598ee3
+
             foreach (Item item in libraryList)
             {
                 if (item.CheckedIn == true)
@@ -274,8 +271,6 @@ namespace Library_Mid_Term_Project
             }
 
             // asks user to select between 1 - i, where i is the current # of 'checked in' items in the list
-<<<<<<< HEAD
-            //int indexOffset = -1;
             int choice = session.GetValidNumber("\nWhich item would you like to check out?", count - 1);
             bool gotValue = tempDict.TryGetValue(choice, out string title);
             foreach(var item in libraryList)
@@ -286,24 +281,13 @@ namespace Library_Mid_Term_Project
                     SetItemDueDate(item);
                 }
             }
-=======
-            int indexOffset = -1;
-            int choice = session.GetValidInput(session.GetUserInput("Enter in the corresponding number by the item you would like to checkout: "), 1, count);
-            libraryList[choice].CheckedIn = false;
 
-            ItemListToText(libraryList);
-            // are you sure? 
-
-            // HERE'S WHERE WE WRITE TO .TXT
-            //convert list back to .txt file, propigate the changes, and save over the old .txt file
->>>>>>> d18549c26d1f0ac33bcaebd3d8d93e807f598ee3
 
             UserContinue();
         }
 
         private void CheckInItem() //will need a 'List<Item> libraryList' parameter
         {
-<<<<<<< HEAD
             ValidatorClass session = new ValidatorClass();
             //do stuff
 
@@ -311,25 +295,17 @@ namespace Library_Mid_Term_Project
             Console.WriteLine("\nHere's the list of currently available items:");
             int count = 1;
             Dictionary<int, string> tempDict = new Dictionary<int, string>();
-=======
-            // probably print the list of items that are checked out
-            Console.WriteLine("Here's the list of currently checked out items:");
-            int i = 0;
->>>>>>> d18549c26d1f0ac33bcaebd3d8d93e807f598ee3
+
             foreach (Item item in libraryList)
             {
                 if (item.CheckedIn == false)
                 {
-<<<<<<< HEAD
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine($"{count}: {item.Title}");
                     Console.ResetColor();
                     tempDict.Add(count, item.Title);
                     count++;
-=======
-                    Console.WriteLine($"{i+1}: {item.Title} --- {item.CheckedIn}");
-                    i++;
->>>>>>> d18549c26d1f0ac33bcaebd3d8d93e807f598ee3
+
                 }
             }
 
