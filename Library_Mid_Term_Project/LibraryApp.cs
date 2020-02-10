@@ -7,12 +7,7 @@ namespace Library_Mid_Term_Project
 {
     class LibraryApp
     {
-        // read in the text file to a list... somewhere... probably at the top, just once. 
-        // Maybe inside of StartLibrary() or PrintMainMenu(). 
-        // We'll READ the file when prepare to display a list of all the Books/Items, but again, just once, near the top of the program. We don't need to read the file all over the place
-        // We'll WRITE to the file when a user checks in, or checks out a Book/Item
-
-        List<Item> libraryList = new List<Item>(); //<= GONNA NEED THIS ASAP
+        List<Item> libraryList = new List<Item>();
         ValidatorClass session = new ValidatorClass();
 
 
@@ -134,7 +129,7 @@ namespace Library_Mid_Term_Project
             foreach (Item item in libraryList)
             {
                 //go back and format this or, inside of the Item (or children) class, setup a DisplayItem(); method
-                if (item is Book && item.CheckedIn)
+                if (item is Book && !item.CheckedIn)
                 {   
                     Book b = (Book)item;
                     Console.WriteLine($"{i} - TITLE: {item.Title}\n    AUTHOR: {item.Author}\n    NUMBER OF PAGES: {b.NumberOfPages}\n    DESCRIPTION: {item.Description}");
@@ -144,7 +139,7 @@ namespace Library_Mid_Term_Project
                     Console.WriteLine("=============================================================================================================");
                 }
 
-                else if(item is Book && !item.CheckedIn)
+                else if(item is Book && item.CheckedIn)
                 {
                     Book b = (Book)item;
                     Console.WriteLine($"{i} - TITLE: {item.Title}\n    AUTHOR: {item.Author}\n    NUMBER OF PAGES: {b.NumberOfPages}");
@@ -155,7 +150,7 @@ namespace Library_Mid_Term_Project
                     Console.WriteLine("=============================================================================================================");
                 }
 
-                if (item is Magazine && item.CheckedIn)
+                if (item is Magazine && !item.CheckedIn)
                 {
                     Magazine b = (Magazine)item;
                     Console.WriteLine($"{i} - TITLE: {item.Title}\n    AUTHOR: {item.Author}\n    NUMBER OF PAGES: {b.NumberOfPages}\n    DESCRIPTION: {item.Description}");
@@ -165,7 +160,7 @@ namespace Library_Mid_Term_Project
                     Console.WriteLine("=============================================================================================================");
                 }
 
-                else if (item is Magazine && !item.CheckedIn)
+                else if (item is Magazine && item.CheckedIn)
                 {
                     Magazine b = (Magazine)item;
                     Console.WriteLine($"{i} - TITLE: {item.Title}\n    AUTHOR: {item.Author}\n    NUMBER OF PAGES: {b.NumberOfPages}");
@@ -176,7 +171,7 @@ namespace Library_Mid_Term_Project
                     Console.WriteLine("=============================================================================================================");
                 }
 
-                if (item is CD && item.CheckedIn)
+                if (item is CD && !item.CheckedIn)
                 {
                     CD b = (CD)item;
                     Console.WriteLine($"{i} - TITLE: {item.Title}\n    AUTHOR: {item.Author}\n    CD Length: {b.Length}\n    DESCRIPTION: {item.Description}");
@@ -186,7 +181,7 @@ namespace Library_Mid_Term_Project
                     Console.WriteLine("=============================================================================================================");
                 }
 
-                else if (item is CD && !item.CheckedIn)
+                else if (item is CD && item.CheckedIn)
                 {
                     CD b = (CD)item;
                     Console.WriteLine($"{i} - TITLE: {item.Title}\n    AUTHOR: {item.Author}\n    CD Length: {b.Length}");
@@ -197,7 +192,7 @@ namespace Library_Mid_Term_Project
                     Console.WriteLine("=============================================================================================================");
                 }
 
-                if (item is Movie && item.CheckedIn)
+                if (item is Movie && !item.CheckedIn)
                 {
                     Movie b = (Movie)item;
                     Console.WriteLine($"{i} - TITLE: {item.Title}\n    AUTHOR: {item.Author}\n    Movie Length: {b.Duration}\n    DESCRIPTION: {item.Description}");
@@ -207,7 +202,7 @@ namespace Library_Mid_Term_Project
                     Console.WriteLine("=============================================================================================================");
                 }
                 
-                else if (item is Movie && !item.CheckedIn)
+                else if (item is Movie && item.CheckedIn)
                 {
                     Movie b = (Movie)item;
                     Console.WriteLine($"{i} - TITLE: {item.Title}\n    AUTHOR: {item.Author}\n    Movie Length: {b.Duration}");
@@ -253,10 +248,10 @@ namespace Library_Mid_Term_Project
             int count = 0;
             foreach (Item item in libraryList)
             {
-                if (item.CheckedIn == true)
+                if (item.CheckedIn)
                 {
                     Console.ForegroundColor = ConsoleColor.Cyan;
-                    Console.WriteLine($"{count + 1}: {item.Title}");
+                    Console.WriteLine($"{count+ 1}: {item.Title} {item.CheckedIn}");
                     Console.ResetColor();
                     count++;
                 }
@@ -283,7 +278,7 @@ namespace Library_Mid_Term_Project
             int i = 0;
             foreach (Item item in libraryList)
             {
-                if (item.CheckedIn == false)
+                if (item.CheckedIn == true)
                 {
                     Console.WriteLine($"{i+1}: {item.Title} --- {item.CheckedIn}");
                     i++;
