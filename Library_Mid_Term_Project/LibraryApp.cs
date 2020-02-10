@@ -110,7 +110,7 @@ namespace Library_Mid_Term_Project
 
         public void ItemListToText(List<Item> items)
         {
-            StreamWriter writer = new StreamWriter("../../../ItemsInventoryKYLESTEST.txt");
+            StreamWriter writer = new StreamWriter("../../../ItemsInventory.txt");
 
             // looks at the libraryList declared aaaaaallllll the way at the top, and iterates through them.
             // properties like CheckedIn or DueDate will be modified in the CheckIn/CheckOut method, and this method will write those changes ontop of the old .txt file
