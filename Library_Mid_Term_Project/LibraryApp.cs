@@ -110,7 +110,7 @@ namespace Library_Mid_Term_Project
 
         public void ItemListToText(List<Item> items)
         {
-            StreamWriter writer = new StreamWriter("../../../ItemsInventoryKYLESTEST");
+            StreamWriter writer = new StreamWriter("../../../ItemsInventoryKYLESTEST.txt");
 
             // looks at the libraryList declared aaaaaallllll the way at the top, and iterates through them.
             // properties like CheckedIn or DueDate will be modified in the CheckIn/CheckOut method, and this method will write those changes ontop of the old .txt file
@@ -118,18 +118,35 @@ namespace Library_Mid_Term_Project
 
             for (int i = 0; i < libraryList.Count; i++)
             {
-
+                //book
                 if (items[i] is Book)
                 {
                     //unboxing magic
                     Item item = items[i];
-                    Book book = (Book)item; 
-
-                    writer.WriteLine($"{book.Title}|{book.Author}|{book.NumberOfPages}|{book.Description}|{book.CheckedIn}|{book.DueDate}");
+                    Book book = (Book)item;
+                    writer.WriteLine($"{book.MediaType}|{book.Title}|{book.Author}|{book.Description}|{book.CheckedIn}|{book.DueDate}|{book.NumberOfPages}");
                 }
-                else if (items[i] is Item)
+                //CD
+                else if (items[i] is CD)
                 {
-                    // it's not an elegant solution, but depending on item type, we can setup the writer to write in different ways, to match different constructors
+                    Item item = items[i];
+                    CD cd = (CD)item;
+                    writer.WriteLine($"{cd.MediaType}|{cd.Title}|{cd.Author}|{cd.Description}|{cd.CheckedIn}|{cd.DueDate}|{cd.Length}");
+                }
+                //magazine
+                else if (items[i] is Magazine)
+                {
+                    Item item = items[i];
+                    Magazine mag = (Magazine)item;
+                    writer.WriteLine($"{mag.MediaType}|{mag.Title}|{mag.Author}|{mag.Description}|{mag.CheckedIn}|{mag.DueDate}|{mag.NumberOfPages}");
+                }
+                //movie 
+                else if (items[i] is Movie)
+                {
+                    Item item = items[i];
+                    Movie movie = (Movie)item;
+                    writer.WriteLine($"{movie.MediaType}|{movie.Title}|{movie.Author}|{movie.Description}|{movie.CheckedIn}|{movie.DueDate}|{movie.Duration}");
+
                 }
             }
             writer.Close();
@@ -152,7 +169,7 @@ namespace Library_Mid_Term_Project
                     Console.ForegroundColor = ConsoleColor.White;
                     Console.WriteLine("=============================================================================================================");
 
-                    Console.WriteLine($"{i}: Title: {item.Title} Author: {item.Author} Status: {item.CheckedIn} Due Date: {item.DueDate}\n Description: {item.Description}");
+                    //Console.WriteLine($"{i}: Title: {item.Title} Author: {item.Author} Status: {item.CheckedIn} Due Date: {item.DueDate}\n Description: {item.Description}");
                 }
                 else if(item is Book)
                 {
@@ -194,7 +211,6 @@ namespace Library_Mid_Term_Project
         private void CheckOutItem() //will need a 'List<Item> libraryList' parameter
         {
             ValidatorClass session = new ValidatorClass();
-            //do stuff
 
             // probably print the list of items that checked in
             Console.WriteLine("\nHere's the list of currently available items:");
@@ -210,12 +226,18 @@ namespace Library_Mid_Term_Project
                 }
             }
 
+          
+
             // asks user to select between 1 - i, where i is the current # of 'checked in' items in the list
+            
+            
+            
+            
             int indexOffset = -1;
             int choice = session.GetValidNumber("\nWhich item would you like to check out?", count) + indexOffset;
             libraryList[choice].CheckedIn = false;
 
-            ItemListToText(libraryList);
+            //ItemListToText(libraryList);
             // are you sure? 
 
             // HERE'S WHERE WE WRITE TO .TXT
