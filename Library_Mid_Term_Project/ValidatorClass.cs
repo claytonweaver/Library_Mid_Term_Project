@@ -79,8 +79,6 @@ namespace Library_Mid_Term_Project
                         Console.WriteLine($"TITLE: {item.Title}");
                         Console.ForegroundColor = ConsoleColor.White;
                         Console.WriteLine($"AUTHOR: {item.Author}\nDESCRIPTION: {item.Description}");
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine($"DUE DATE: {item.DueDate}");
                         Console.ForegroundColor = ConsoleColor.White;
                 }
             }
@@ -96,8 +94,6 @@ namespace Library_Mid_Term_Project
                     Console.WriteLine($"TITLE: {item.Title}");
                     Console.ForegroundColor = ConsoleColor.White;
                     Console.WriteLine($"AUTHOR: {item.Author}\nDESCRIPTION: {item.Description}");
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine($"DUE DATE: {item.DueDate}");
                     Console.ForegroundColor = ConsoleColor.White;
                 }
             }
