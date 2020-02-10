@@ -7,17 +7,9 @@ namespace Library_Mid_Term_Project
 {
     class LibraryApp
     {
-<<<<<<< HEAD
-        List<Item> libraryList = new List<Item>();
-=======
-        // read in the text file to a list... somewhere... probably at the top, just once. 
-        // Maybe inside of StartLibrary() or PrintMainMenu(). 
-        // We'll READ the file when prepare to display a list of all the Books/Items, but again, just once, near the top of the program. We don't need to read the file all over the place
-        // We'll WRITE to the file when a user checks in, or checks out a Book/Item
 
-        List<Item> libraryList = new List<Item>(); //<= GONNA NEED THIS ASAP
+        List<Item> libraryList = new List<Item>();
         private object authorlist;
->>>>>>> 623d81c3e818b0df4dff9ecbbc21aabc74535bd7
         ValidatorClass session = new ValidatorClass();
 
 
@@ -161,10 +153,7 @@ namespace Library_Mid_Term_Project
             foreach (Item item in libraryList)
             {
                 //go back and format this or, inside of the Item (or children) class, setup a DisplayItem(); method
-<<<<<<< HEAD
-=======
 
->>>>>>> 623d81c3e818b0df4dff9ecbbc21aabc74535bd7
                 if (item is Book && !item.CheckedIn)
                 {   
                     Book b = (Book)item;
@@ -224,10 +213,6 @@ namespace Library_Mid_Term_Project
                     Console.WriteLine("=============================================================================================================");
                 }
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 623d81c3e818b0df4dff9ecbbc21aabc74535bd7
                 if (item is CD && !item.CheckedIn)
                 {
                     CD b = (CD)item;
@@ -298,20 +283,23 @@ namespace Library_Mid_Term_Project
         private void SearchForItem() //will need a 'List<Item> libraryList' parameter
         {
             ValidatorClass session = new ValidatorClass();
-            Console.WriteLine("Search by:\n     1. Author\n     2: Title\n      3. Return to Main Menu");
+            Console.WriteLine("Search by:\n     1. Author\n     2: Title\n     3. Return to Main Menu");
             int userInput = this.session.GetValidInput(this.session.GetUserInput("User Option: "), 1, 3); 
 
             switch (userInput)
             {
                 case 1:
+                    Console.Clear();
                     session.SearchByAuthor(libraryList);
                     
                     break;
                 case 2:
+                    Console.Clear();
                     session.SearchByTitle(libraryList);
                     break;
 
                 case 3:
+                    Console.Clear();
                     PrintMainMenu();
                     break;
             }
@@ -331,11 +319,9 @@ namespace Library_Mid_Term_Project
                 if (item.CheckedIn)
                 {
                     Console.ForegroundColor = ConsoleColor.Cyan;
-<<<<<<< HEAD
                     Console.WriteLine($"{count+ 1}: {item.Title} {item.CheckedIn}");
-=======
+
                     Console.WriteLine($"{count}: {item.Title}");
->>>>>>> 623d81c3e818b0df4dff9ecbbc21aabc74535bd7
                     Console.ResetColor();
                     tempDict.Add(count, item.Title);
                     count++;
@@ -396,7 +382,7 @@ namespace Library_Mid_Term_Project
 
             UserContinue();
         }
-        private void UserContinue()
+        public void UserContinue()
 
         {
             bool userContinue = true;
@@ -409,9 +395,11 @@ namespace Library_Mid_Term_Project
                 switch (userSelection)
                 {
                     case "y":
+                        Console.Clear();
                         PrintMainMenu();
                         break;
                     case "n":
+                        Console.Clear();
                         Console.WriteLine("Goodbye!");
                         ExitProgram();
                         break;

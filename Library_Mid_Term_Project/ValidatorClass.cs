@@ -102,6 +102,8 @@ namespace Library_Mid_Term_Project
             Console.WriteLine($"      DUE DATE: {authorList[inPut - 1].DueDate}");
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("=============================================================================================================");
+            LibraryApp returnToMain = new LibraryApp();
+            returnToMain.UserContinue();
         }
 
     }
