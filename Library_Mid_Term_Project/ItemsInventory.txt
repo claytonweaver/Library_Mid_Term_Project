@@ -5,8 +5,8 @@ Book|Alexander and the Terrible, Horrible, No Good, Very Bad Day|Judith Viorst|T
 Book|The Zombie Room|R.D. Ronald|An unlikely bond is forged between three men from very different backgrounds when they serve time together in prison.|True|2/24/2020 12:48:42 PM|241
 Movie|Men in Black: International|Art Marcum|The Men in Black have expanded to cover the globe but so have the villains of the universe.|True|2/24/2020 12:51:08 PM|115mins
 Movie|Creed II|Sylvester Stallone|Under guidance from Rocky Balboa, Adonis Creed prepares for an epic showdown against the son of Ivan Drago; Victor Drago|True|2/24/2020 1:32:13 PM|133mins
-Magazine|Wired|Conde Nast|Whether you're a tech geek or business entrepreneur, WIRED is the magazine that is known for covering all things tech, and how these tech trends relate to other aspects of life.|False|1/1/1920 12:00:00 AM|75
-Magazine|Thrasher|John Smith|Thrasher is a skateboarding magazine.|False|1/1/1920 12:00:00 AM|54
-Book|Lord of The Rings|J.R.R. Tolkien|Two hobbits take a ring to a place.|False|1/1/1920 12:00:00 AM|400
-Movie|Flubber|Les Mayfield|Flubber is a movie about goo.|False|1/1/1920 12:00:00 AM|126mins
-CD|Hansen|Hansen|Mmmm Bop Tiggy Tock|False|2/24/2020 1:45:41 PM|50mins
+Magazine|Wired|Conde Nast|Whether you're a tech geek or business entrepreneur, WIRED is the magazine that is known for covering all things tech, and how these tech trends relate to other aspects of life.|True|1/1/1920 12:00:00 AM|75
+Magazine|Thrasher|John Smith|Thrasher is a skateboarding magazine.|True|1/1/1920 12:00:00 AM|54
+Book|Lord of The Rings|J.R.R. Tolkien|Two hobbits take a ring to a place.|True|1/1/1920 12:00:00 AM|400
+Movie|Flubber|Les Mayfield|Flubber is a movie about goo.|True|1/1/1920 12:00:00 AM|126mins
+CD|Hansen|Hansen|Mmmm Bop Tiggy Tock|True|2/24/2020 1:45:41 PM|50mins

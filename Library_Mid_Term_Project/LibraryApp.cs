@@ -294,11 +294,13 @@ namespace Library_Mid_Term_Project
             switch (userInput)
             {
                 case 1:
-                    session.SearchByAuthor(libraryList);
+                    string userAuthor = session.GetUserInput("Enter the name of the author: ");
+                    session.SearchByAuthor(libraryList, userAuthor);
                     UserContinue();
                     break;
                 case 2:
-                    session.SearchByTitle(libraryList);
+                    string userTitle = session.GetUserInput("Enter the name of the title: ");
+                    session.SearchByTitle(libraryList, userTitle);
                     UserContinue();
                     break;
 
