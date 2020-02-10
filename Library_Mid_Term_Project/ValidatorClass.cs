@@ -14,6 +14,7 @@ namespace Library_Mid_Term_Project
             Console.Write(response);
             string userInput = Console.ReadLine();
             Console.ForegroundColor = ConsoleColor.White;
+            Console.ResetColor();
             return userInput;
         }
 
@@ -32,12 +33,12 @@ namespace Library_Mid_Term_Project
                 }
                 else
                 {
-                    return GetValidInput(session.GetUserInput($"Invalid input.  Please enter an option between {min} - {max}: "), min, max);
+                    return GetValidInput(session.GetUserInput($"Please enter an option between {min} - {max}: "), min, max);
                 }
             }
             catch (FormatException)
             {
-                return GetValidInput(session.GetUserInput($"Invalid input. Please enter an option of {min} - {max}: "), min, max);
+                return GetValidInput(session.GetUserInput($"Please enter an option of {min} - {max}: "), min, max);
             }
         }
 
@@ -66,6 +67,11 @@ namespace Library_Mid_Term_Project
             }
         }
 
+<<<<<<< HEAD
+=======
+        
+
+>>>>>>> 94f3f87782ce23808a2ad5892ed2b03a0e3a457b
         public void SearchByTitle(List<Item> items, string userInput)
         {
             foreach(var item in items)
