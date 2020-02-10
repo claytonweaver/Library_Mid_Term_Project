@@ -35,7 +35,7 @@ namespace Library_Mid_Term_Project
             get { return description; }
             set { description = value; }
         }
-        
+
         public bool CheckedIn
         {
             get { return checkedIn; }
@@ -68,7 +68,7 @@ namespace Library_Mid_Term_Project
         {
 
         }
-        public  Item(string mediaType, string title, string author, string description, bool checkedIn, DateTime dueDate)
+        public Item(string mediaType, string title, string author, string description, bool checkedIn, DateTime dueDate)
         {
             this.mediaType = mediaType;
             this.title = title;

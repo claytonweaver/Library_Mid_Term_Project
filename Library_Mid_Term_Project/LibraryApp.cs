@@ -21,7 +21,7 @@ namespace Library_Mid_Term_Project
         public void StartLibrary()
         {
             GetItems(libraryList);
-            PrintMainMenu();                    
+            PrintMainMenu();
         }
 
         private void PrintMainMenu()
@@ -159,7 +159,7 @@ namespace Library_Mid_Term_Project
                 //go back and format this or, inside of the Item (or children) class, setup a DisplayItem(); method
 
                 if (item is Book && !item.CheckedIn)
-                {   
+                {
                     Book b = (Book)item;
                     Console.ForegroundColor = ConsoleColor.Cyan;
                     Console.WriteLine($"{i} - TITLE: {item.Title}");
@@ -173,7 +173,7 @@ namespace Library_Mid_Term_Project
                     Console.WriteLine("=============================================================================================================");
                 }
 
-                else if(item is Book && item.CheckedIn)
+                else if (item is Book && item.CheckedIn)
                 {
                     Book b = (Book)item;
                     Console.ForegroundColor = ConsoleColor.Cyan;
@@ -263,7 +263,7 @@ namespace Library_Mid_Term_Project
                     Console.ForegroundColor = ConsoleColor.White;
                     Console.WriteLine("=============================================================================================================");
                 }
-                
+
                 else if (item is Movie && item.CheckedIn)
                 {
                     Movie b = (Movie)item;
@@ -289,16 +289,23 @@ namespace Library_Mid_Term_Project
         {
             ValidatorClass session = new ValidatorClass();
             Console.WriteLine("Search by:\n     1. Author\n     2: Title\n     3. Return to Main Menu");
+<<<<<<< HEAD
             int userInput = this.session.GetValidInput(this.session.GetUserInput("User Option: "), 1, 3); 
+=======
+            int userInput = this.session.GetValidInput(this.session.GetUserInput("User Option: "), 1, 3);
+>>>>>>> c9099c4be6a6cb977afc4ddc614477612e175255
 
             switch (userInput)
             {
                 case 1:
-                    session.SearchByAuthor(libraryList);
-                    
+                    string userAuthor = session.GetUserInput("Enter the name of the author: ");
+                    session.SearchByAuthor(libraryList, userAuthor);
+                    UserContinue();
                     break;
                 case 2:
-                    session.SearchByTitle(libraryList);
+                    string userTitle = session.GetUserInput("Enter the name of the title: ");
+                    session.SearchByTitle(libraryList, userTitle);
+                    UserContinue();
                     break;
 
                 case 3:
@@ -326,15 +333,17 @@ namespace Library_Mid_Term_Project
                     tempDict.Add(count, item.Title);
                     count++;
                 }
+                else
+                {
+                    Console.WriteLine("Oopsies! There are no checked in items. Library closed...");
+                    UserContinue();
+                }
             }
-
-          
-
             // asks user to select between 1 - i, where i is the current # of 'checked in' items in the list
 
-            int choice = session.GetValidInput("\nWhich item would you like to check out?",1, count -1 );
+            int choice = session.GetValidInput("\nWhich item would you like to check out?", 1, count - 1);
             bool gotValue = tempDict.TryGetValue(choice, out string title);
-            foreach(var item in libraryList)
+            foreach (var item in libraryList)
             {
                 if (item.Title == title)
                 {
@@ -352,7 +361,7 @@ namespace Library_Mid_Term_Project
             //do stuff
 
             // probably print the list of items that checked in
-            Console.WriteLine("\nHere's the list of currently available items:");
+            Console.WriteLine("\nHere's the list of currently checked out items:");
             int count = 1;
             Dictionary<int, string> tempDict = new Dictionary<int, string>();
 
@@ -367,8 +376,13 @@ namespace Library_Mid_Term_Project
                     count++;
 
                 }
+                else
+                {
+                    Console.WriteLine("Oopsies! There's no checked out items.");
+                    UserContinue();
+                }
             }
-            int choice = session.GetValidInput("\nWhich item would you like to check out?", 1, count -1);
+            int choice = session.GetValidInput("\nWhich item would you like to check out?", 1, count - 1);
             //int choice = session.GetValidNumber("\nWhich item would you like to check out?", count - 1);
             bool gotValue = tempDict.TryGetValue(choice, out string title);
             foreach (var item in libraryList)
@@ -413,7 +427,7 @@ namespace Library_Mid_Term_Project
         {
             ItemListToText(libraryList);
             Environment.Exit(0);
-            
+
         }
 
         private void SetItemDueDate(Item item)
