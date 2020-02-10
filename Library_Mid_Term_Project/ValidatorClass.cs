@@ -9,8 +9,12 @@ namespace Library_Mid_Term_Project
     {
         public string GetUserInput(string response)
         {
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.Write(response);
-            return Console.ReadLine();
+            string userInput = Console.ReadLine();
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.Clear();
+            return userInput;
         }
 
 
@@ -21,7 +25,7 @@ namespace Library_Mid_Term_Project
             try
             {
                 int selection = int.Parse(input);
-                if(selection < min && selection > max)
+                if(selection >= min && selection <= max)
                 {
                     return selection;
                 }
@@ -48,7 +52,7 @@ namespace Library_Mid_Term_Project
             {
                 Console.Write(input);
                 option =  int.Parse(Console.ReadLine());
-                if (option < 0 || option > max)
+                if (option >= 0 && option <= max)
                 {
                     option = -1;
                     Console.WriteLine("Please enter a valid number!");
